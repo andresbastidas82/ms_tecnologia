@@ -1,6 +1,9 @@
+server:
+  port: 8090
+
 spring:
   r2dbc:
-    url: r2dbc:mysql://localhost:3306/technology_db
+    url: r2dbc:mysql://localhost:3306/technology_db?serverTimezone=UTC
     username: root
     password: 123456
 
