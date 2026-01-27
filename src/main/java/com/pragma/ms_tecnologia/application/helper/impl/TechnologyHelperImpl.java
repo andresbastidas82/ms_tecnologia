@@ -1,13 +1,15 @@
-package com.pragma.ms_tecnologia.application.handler.impl;
+package com.pragma.ms_tecnologia.application.helper.impl;
 
 import com.pragma.ms_tecnologia.application.dto.TechnologyRequest;
 import com.pragma.ms_tecnologia.application.dto.TechnologyResponse;
-import com.pragma.ms_tecnologia.application.handler.ITechnologyHelper;
+import com.pragma.ms_tecnologia.application.helper.ITechnologyHelper;
 import com.pragma.ms_tecnologia.application.mapper.ITechnologyRequestMapper;
 import com.pragma.ms_tecnologia.domain.api.ITechnologyServicePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -22,5 +24,10 @@ public class TechnologyHelperImpl implements ITechnologyHelper {
                 .map(technologyRequestMapper::toTechnology)
                 .flatMap(technologyServicePort::save)
                 .map(technologyRequestMapper::toTechnologyResponse);
+    }
+
+    @Override
+    public Mono<Boolean> existAllByIds(List<Long> technologyIds) {
+        return technologyServicePort.existAllByIds(technologyIds);
     }
 }

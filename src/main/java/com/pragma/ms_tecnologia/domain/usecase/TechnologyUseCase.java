@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class TechnologyUseCase implements ITechnologyServicePort {
@@ -22,5 +24,15 @@ public class TechnologyUseCase implements ITechnologyServicePort {
                     }
                     return technologyPersistencePort.save(technology);
                 });
+    }
+
+    @Override
+    public Mono<Boolean> existAllByIds(List<Long> technologyIds) {
+        if (technologyIds == null || technologyIds.isEmpty()) {
+            return Mono.just(false);
+        }
+
+        return technologyPersistencePort.countByIds(technologyIds)
+                .map(count -> count == technologyIds.size());
     }
 }
