@@ -2,11 +2,12 @@ package com.pragma.ms_tecnologia.infrastructure.out.r2dbc.adapter;
 
 import com.pragma.ms_tecnologia.domain.model.Technology;
 import com.pragma.ms_tecnologia.domain.spi.ITechnologyPersistencePort;
-import com.pragma.ms_tecnologia.infrastructure.out.r2dbc.entity.TechnologyEntity;
 import com.pragma.ms_tecnologia.infrastructure.out.r2dbc.mapper.ITechnologyMapper;
 import com.pragma.ms_tecnologia.infrastructure.out.r2dbc.repository.TechnologyR2dbcRepository;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @Component
 public class TechnologyRepositoryAdapter implements ITechnologyPersistencePort {
@@ -26,7 +27,15 @@ public class TechnologyRepositoryAdapter implements ITechnologyPersistencePort {
 
     @Override
     public Mono<Technology> save(Technology technology) {
-        TechnologyEntity technologyEntity = technologyMapper.toTechnologyEntity(technology);
-        return technologyR2dbcRepository.save(technologyEntity).map(technologyMapper::toTechnology);
+        return Mono.just(technology)
+                .map(technologyMapper::toTechnologyEntity)
+                .flatMap(technologyR2dbcRepository::save)
+                .map(technologyMapper::toTechnology);
     }
+
+    @Override
+    public Mono<Long> countByIds(List<Long> ids) {
+        return technologyR2dbcRepository.countByIds(ids);
+    }
+
 }
