@@ -6,6 +6,7 @@ import com.pragma.ms_tecnologia.domain.model.Technology;
 import com.pragma.ms_tecnologia.domain.spi.ITechnologyPersistencePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
@@ -34,5 +35,10 @@ public class TechnologyUseCase implements ITechnologyServicePort {
 
         return technologyPersistencePort.countByIds(technologyIds)
                 .map(count -> count == technologyIds.size());
+    }
+
+    @Override
+    public Flux<Technology> getTechnologiesByIds(List<Long> ids) {
+        return technologyPersistencePort.getTechnologiesByIds(ids);
     }
 }
