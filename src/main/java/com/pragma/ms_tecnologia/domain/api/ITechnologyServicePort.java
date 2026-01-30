@@ -13,4 +13,6 @@ public interface ITechnologyServicePort {
     Mono<Boolean> existAllByIds(List<Long> technologyIds);
 
     Flux<Technology> getTechnologiesByIds(List<Long> ids);
+
+    Mono<Boolean> deleteTechnologies(List<Long> ids);
 }

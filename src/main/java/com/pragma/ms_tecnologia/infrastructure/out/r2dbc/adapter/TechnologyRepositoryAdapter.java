@@ -5,6 +5,7 @@ import com.pragma.ms_tecnologia.domain.spi.ITechnologyPersistencePort;
 import com.pragma.ms_tecnologia.infrastructure.out.r2dbc.mapper.ITechnologyMapper;
 import com.pragma.ms_tecnologia.infrastructure.out.r2dbc.repository.TechnologyR2dbcRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -43,6 +44,14 @@ public class TechnologyRepositoryAdapter implements ITechnologyPersistencePort {
     public Flux<Technology> getTechnologiesByIds(List<Long> ids) {
         return technologyR2dbcRepository.findByIdIn(ids)
                 .map(technologyMapper::toTechnology);
+    }
+
+    @Transactional
+    @Override
+    public Mono<Boolean> deleteTechnologies(List<Long> ids) {
+        return technologyR2dbcRepository.deleteAllById(ids)
+                .thenReturn(true)
+                .onErrorResume(Mono::error);
     }
 
 }

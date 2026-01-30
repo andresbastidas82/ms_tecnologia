@@ -8,10 +8,9 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
-import java.util.UUID;
 
 
-public interface TechnologyR2dbcRepository extends ReactiveCrudRepository<TechnologyEntity, UUID> {
+public interface TechnologyR2dbcRepository extends ReactiveCrudRepository<TechnologyEntity, Long> {
 
     Mono<Boolean> existsByName(String name);
 

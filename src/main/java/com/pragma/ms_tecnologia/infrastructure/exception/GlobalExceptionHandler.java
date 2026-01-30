@@ -1,5 +1,6 @@
 package com.pragma.ms_tecnologia.infrastructure.exception;
 
+import com.pragma.ms_tecnologia.domain.exceptions.BadRequestException;
 import com.pragma.ms_tecnologia.domain.exceptions.TechnologyAlreadyExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestControllerAdvice
@@ -39,6 +41,17 @@ public class GlobalExceptionHandler {
                 .timestamp(LocalDateTime.now()).build();
 
         return buildResponse(HttpStatus.CONFLICT, error);
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    public Mono<ResponseEntity<ErrorResponse>> handleTechnologyAlreadyExists(
+            BadRequestException ex) {
+        ErrorResponse error = ErrorResponse.builder()
+                .code(HttpStatus.BAD_REQUEST.value())
+                .errors(Arrays.asList(ex.getMessage().split("\\|")))
+                .timestamp(LocalDateTime.now()).build();
+
+        return buildResponse(HttpStatus.BAD_REQUEST, error);
     }
 
     private Mono<ResponseEntity<ErrorResponse>> buildResponse(HttpStatus status, ErrorResponse error) {

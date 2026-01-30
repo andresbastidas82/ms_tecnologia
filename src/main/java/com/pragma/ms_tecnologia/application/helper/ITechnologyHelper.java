@@ -12,4 +12,5 @@ public interface ITechnologyHelper {
     Mono<TechnologyResponse> save(TechnologyRequest technologyRequest);
     Mono<Boolean> existAllByIds(List<Long> technologyIds);
     Flux<TechnologyResponse> getTechnologiesByIds(List<Long> ids);
+    Mono<Boolean> deleteTechnologies(List<Long> ids);
 }
