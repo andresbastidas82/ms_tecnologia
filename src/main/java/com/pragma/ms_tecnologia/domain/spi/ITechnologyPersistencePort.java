@@ -15,4 +15,6 @@ public interface ITechnologyPersistencePort {
     Mono<Long> countByIds(List<Long> ids);
 
     Flux<Technology> getTechnologiesByIds(List<Long> ids);
+
+    Mono<Boolean> deleteTechnologies(List<Long> ids);
 }

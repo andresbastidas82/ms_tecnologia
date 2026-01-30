@@ -37,4 +37,9 @@ public class TechnologyHelperImpl implements ITechnologyHelper {
         return technologyServicePort.getTechnologiesByIds(ids)
                 .map(technologyRequestMapper::toTechnologyResponse);
     }
+
+    @Override
+    public Mono<Boolean> deleteTechnologies(List<Long> ids) {
+        return technologyServicePort.deleteTechnologies(ids);
+    }
 }
