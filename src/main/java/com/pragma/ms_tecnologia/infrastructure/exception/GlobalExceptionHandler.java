@@ -1,7 +1,7 @@
 package com.pragma.ms_tecnologia.infrastructure.exception;
 
-import com.pragma.ms_tecnologia.domain.exceptions.BadRequestException;
-import com.pragma.ms_tecnologia.domain.exceptions.TechnologyAlreadyExistsException;
+import com.pragma.ms_tecnologia.domain.exception.BadRequestException;
+import com.pragma.ms_tecnologia.domain.exception.TechnologyAlreadyExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

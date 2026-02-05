@@ -71,12 +71,16 @@ jacocoTestReport {
 	afterEvaluate {
 		classDirectories.setFrom(files(classDirectories.files.collect {
 			fileTree(dir: it, exclude: [
-					'**/config/**',
+					// Excluir la clase principal de la aplicación
+					'**/MsTecnologiaApplication.class',
+					'**/configuration/**',
 					'**/dto/**',
+					'**/model/**',
 					'**/entity/**',
 					'**/mapper/**',
+					'**/exception/**',
 					'**/*application*',
-					'**/infrastructure/**'
+					//'**/infrastructure/**'
 			])
 		}))
 	}

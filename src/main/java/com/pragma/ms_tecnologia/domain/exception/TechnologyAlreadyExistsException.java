@@ -1,4 +1,4 @@
-package com.pragma.ms_tecnologia.domain.exceptions;
+package com.pragma.ms_tecnologia.domain.exception;
 
 import static com.pragma.ms_tecnologia.domain.utils.Constants.TECHNOLOGY_ALREADY_EXISTS;
 

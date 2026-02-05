@@ -1,8 +1,8 @@
 package com.pragma.ms_tecnologia.domain.usecase;
 
 import com.pragma.ms_tecnologia.domain.api.ITechnologyServicePort;
-import com.pragma.ms_tecnologia.domain.exceptions.BadRequestException;
-import com.pragma.ms_tecnologia.domain.exceptions.TechnologyAlreadyExistsException;
+import com.pragma.ms_tecnologia.domain.exception.BadRequestException;
+import com.pragma.ms_tecnologia.domain.exception.TechnologyAlreadyExistsException;
 import com.pragma.ms_tecnologia.domain.model.Technology;
 import com.pragma.ms_tecnologia.domain.spi.ITechnologyPersistencePort;
 import lombok.RequiredArgsConstructor;
