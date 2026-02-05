@@ -1,4 +1,4 @@
-package com.pragma.ms_tecnologia.domain.exceptions;
+package com.pragma.ms_tecnologia.domain.exception;
 
 public class BadRequestException extends RuntimeException {
     public BadRequestException(String message) {
